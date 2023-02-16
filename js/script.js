@@ -1,57 +1,61 @@
-const calculateExpense = () => {
-  const income = document.querySelector("income").value;
-  const food = document.querySelector("food").value;
-  const rent = document.querySelector("rent").value;
-  const clothes = document.querySelectorAll("clothes").value;
+document.getElementById("calculate-btn").addEventListener("click", function () {
+  //income field
+  const incomeField = document.getElementById("income");
+  const incomeValue = incomeField.value;
+  const incomeParse = parseInt(incomeValue);
+  
 
-  if (
-    income < 0 ||
-    income == "" ||
-    food < 0 ||
-    food == "" ||
-    rent < 0 ||
-    rent == "" ||
-    clothes < 0 ||
-    clothes == ""
-  ) {
-    alert("Inputs must be positive numbers");
-    return;
-  }
-  // calculate expense
-  const expense =
-    parseInt(food) + parseInt(rent) + parseInt(clothes);
+  //expenses field
+  const foodField = document.getElementById("food");
+  const foodValue = foodField.value;
+  const foodParse = parseInt(foodValue);
+  
 
-  // calculate balance
-  const balance = parseInt(income.value) - expense;
-  //   validate income
-  if (expense > income.value) {
-    alert("Expenses cannot be more than income");
-  } else {
-    // view total expense and balance
-    document.getElementById("total-expense").innerText = expense;
-    document.getElementById("balance").innerText = balance;
-  }
-};
+  //rent field
+  const rentField = document.getElementById("rent");
+  const rentValue = rentField.value;
+  const rentParse = parseInt(rentValue);
+ 
 
-const calculateSavings = () => {
-  // calculate saving amount
-  const savePercentage = document.getElementById("save").value;
-//   Validate saving percentage value
-  if (savePercentage < 0) {
-    alert("Provide positive saving value");
-  }
-  const savingAmount = (savePercentage / 100) + income;
+  //clothes field
+  const clothesField = document.getElementById("clothes");
+  const clothesValue = clothesField.value;
+  const clothesParse = parseInt(clothesValue);
+  
 
-  // calculate remaining balance
-  const balance = document.getElementById("balance").innerText;
-  const remainingBalance = balance - savingAmount;
+  //expenses Calculate;
+  const expenses = foodParse + rentParse + clothesParse;
+  const totalExpenses = incomeParse - expenses;
+  const displayExpenses = document.getElementById("total-expense").innerText=expenses;
 
-  //   validate saving amount
-  if (savingAmount > balance) {
-    alert("SavingAmount is greater than balance");
-  } else {
-    // view saving amount and remaining balance
-    document.getElementById("saving-amount").innerText = savingAmount;
-    document.getElementById("remaining-balance").innerText = remainingBalance;
-  }
-};
+  //Balance 
+  const balance= document.getElementById("balance").innerText = totalExpenses;
+
+  //clean all field
+  incomeField.value = "";
+  foodField.value = "";
+  rentField.value = "";
+  clothesField.value = "";
+
+});
+
+
+// Saving Calculate 
+document.getElementById("save-btn").addEventListener("click",function(){
+    const saveField = document.getElementById("save");
+    const saveInput = saveField.value;
+    //Balance Amount 
+    const balance = document.getElementById("balance");
+    const balanceInner = balance.innerText;
+    const balanceParse = parseInt(balanceInner);
+
+    //Saving Amount 
+    const savingAmount = balanceParse / saveInput;
+    const displaySavingAmount = document.getElementById("saving-amount").innerText = savingAmount;
+    
+    //Remaining Balance 
+    const remainingBalance = balanceParse - savingAmount;
+    const remaining = document.getElementById("remaining-balance").innerText=remainingBalance;
+
+    saveField.value = ""
+})
