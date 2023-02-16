@@ -50,7 +50,7 @@ document.getElementById("save-btn").addEventListener("click",function(){
     const balanceParse = parseInt(balanceInner);
 
     //Saving Amount 
-    const savingAmount = balanceParse / saveInput;
+    const savingAmount = (saveInput / 100) * balanceParse;
     const displaySavingAmount = document.getElementById("saving-amount").innerText = savingAmount;
     
     //Remaining Balance 
